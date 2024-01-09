@@ -17,24 +17,6 @@ public class Project1 {
 		return scanner.nextLine();
 	}
 
-	public static int question2(Scanner scanner) {
-		int status = 0;
-		do {
-			System.out.print("가입절차를 계속 진행 하시겠습니까?(y/n) ");
-			String answer = scanner.nextLine();
-			switch (answer) {
-			case "n":
-			case "N":
-				status = 1;
-				return status;
-			case "y":
-			case "Y":
-				status = 2;
-				return status;
-			}
-		} while (true);
-	}
-
 	public static int question(Scanner scanner) {
 		int status = 0;
 		do {
@@ -151,7 +133,7 @@ public class Project1 {
 				if (membershipStatus) {
 					System.out.println("이미 회원 가입을 하셨습니다.");
 					System.out.println("회원이름:" + memberName);
-					switch (question2(scanner)) {
+					switch (question(scanner)) {
 					case 1:
 						run = true;
 						continue;

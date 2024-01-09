@@ -13,8 +13,7 @@ public class ScannerEx {
 		String name = scr1.nextLine();
 		
 		System.out.println("주민번호 앞 6자리 :");
-		String strnum = scr1.nextLine();
-		int num = Integer.parseInt(strnum);
+		int num = Integer.parseInt(scr1.nextLine());
 		// int num = scr1.nextInt();
 		System.out.println("전화번호 : ");
 		String phone = scr1.nextLine();

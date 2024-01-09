@@ -17,16 +17,16 @@ public class grade {
 					break;
 			}
 		
-		if(inputData >= 90 && inputData < 100) {
+		if(inputData >= 90) {
 			System.out.println("A");
 		}
-		else if(inputData >= 80 && inputData < 89){
+		else if(inputData >= 80){
 			System.out.println("B");
 		}
-		else if(inputData >= 70 && inputData < 79) {
+		else if(inputData >= 70) {
 			System.out.println("C");
 		}
-		else if(inputData <70){
+		else{
 			System.out.println("D");
 		}
 		}

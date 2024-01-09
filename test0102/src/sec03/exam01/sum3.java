@@ -6,7 +6,6 @@ public class sum3 {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int inputData;
 		int sum = 0;
 		
 		System.out.print("숫자 입력>");

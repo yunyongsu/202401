@@ -11,8 +11,7 @@ public class Login {
 		String name = scanner.nextLine();
 		
 		System.out.println("패스워드: ");
-		String strPassword = scanner.nextLine();
-		int password = Integer.parseInt(strPassword);
+		int password = Integer.parseInt(scanner.nextLine());
 		//int password = scanner.nextInt();
 		
 		if(name.equals ("java")) {
