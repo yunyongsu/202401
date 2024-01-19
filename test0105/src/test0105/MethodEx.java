@@ -11,7 +11,7 @@ public class MethodEx {
 	public static void main(String[] args) {
 		String str = input();
 		System.out.println(str);
-
+		
 	}
 
 }

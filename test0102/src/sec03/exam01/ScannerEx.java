@@ -11,6 +11,7 @@ public class ScannerEx {
 		while(true) {
 			System.out.print("입력>");
 			inputData = scanner.nextLine();
+		
 			System.out.println("입력된 문자열: \""+ inputData +"\"");
 			if(inputData.equals("q")) {
 				break;

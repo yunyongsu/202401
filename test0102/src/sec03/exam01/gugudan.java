@@ -9,7 +9,7 @@ public class gugudan {
 		// String str;
 
 		for (;;) {
-			System.out.print("입력>");
+			System.out.print("입력> ");
 			int inputData = scanner.nextInt();
 
 			if (inputData == 0) {
