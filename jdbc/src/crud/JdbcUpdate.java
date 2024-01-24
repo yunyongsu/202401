@@ -1,11 +1,11 @@
-package jdbc;
+package crud;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class JdbcDelete {
+public class JdbcUpdate {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -15,12 +15,12 @@ public class JdbcDelete {
 		Connection conn = DriverManager.getConnection(url, id, pass);
 		Statement stmt = conn.createStatement();
 		
-		String sql = "delete from emp where empno = 9999";
+		String sql = "update emp set sal = 5500 where empno = 7777";
 		int result = stmt.executeUpdate(sql);
 		if(result == 1) {
-			System.out.println("삭제성공");
+			System.out.println("수정성공");
 		} else {
-			System.out.println("삭제실패");
+			System.out.println("수정실패");
 		}
 		
 	}
