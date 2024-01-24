@@ -1,26 +1,21 @@
-package swing_ver1;
+package swing_0123;
 
 import java.awt.Container;
-import java.awt.Frame;
-
+import java.awt.FlowLayout;
 import javax.swing.JFrame;
 
-public class MyWin extends JFrame{
-	public MyWin(){
+public class MyFrameSample extends JFrame{
+	public MyFrameSample() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container con = this.getContentPane();
+		con.setLayout(new FlowLayout());
+		this.setLocation(500, 400);
+		this.setSize(400, 300);
 		this.setVisible(true);
-		this.setSize(1000, 700);
-		this.setLocation(500, 200);
-		this.setTitle("YUYUYUYUYUN");
-		
-		
-		
 	}
 	
-	
 	public static void main(String[] args) {
-		new MyWin();
+		new MyFrameSample();
 
 	}
 

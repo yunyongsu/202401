@@ -11,10 +11,6 @@ public class ArrayEx {
 		System.out.print("생성할 정수 배열의 개수:");
 		int num = scan.nextInt();
 		int[] scores = new int[num];  // 힙 영역 생성 개수
-//		System.out.println(scores[0]);
-//		System.out.println(scores[1]);
-//		System.out.println(scores[2]);
-//		System.out.println(scores[3]);
 		for (int i=0; i < scores.length; i++) {
 			System.out.println(scores[i]);
 		}

@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class RandomGame {
 
 		public static void main(String[] args) {
-			for(int i=0; i<3; i++) {
+			Scanner scanner = new Scanner(System.in);
+			System.out.print("몇번의 게임을 진행하시겠습니까? : ");
+			int num3 = scanner.nextInt();
+			for(int i=0; i<num3; i++) {
 				multiplication();
 			}
-			
 		}
 		public static void multiplication() {
 
@@ -27,10 +29,8 @@ public class RandomGame {
 					System.out.println("정답입니다.");
 					break;
 				} else {
-					System.out.println("틀렸습니다.");
-					
+					System.out.println("틀렸습니다.");			
 				}
-
 			}
 		}
 		public static int createNumber(Random random) {

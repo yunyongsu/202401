@@ -1,4 +1,4 @@
-package swing_2;
+package swing_Project;
 
 import java.io.Serializable;
 
