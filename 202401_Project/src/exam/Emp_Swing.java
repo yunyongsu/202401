@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -43,7 +45,7 @@ public class Emp_Swing extends JFrame {
 
 	JButton bt1 = new JButton("전체 내용");
 	JButton bt2 = new JButton("입력");
-	JButton bt3 = new JButton("이름 검색");
+	JButton bt3 = new JButton("사원 검색");
 	JButton bt4 = new JButton("수정");
 	JButton bt5 = new JButton("삭제");
 	JTextArea ta = new JTextArea(20, 60);
@@ -98,6 +100,7 @@ public class Emp_Swing extends JFrame {
 		bt1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				clearTextField();
 				select();
 			}
 		});
@@ -117,12 +120,24 @@ public class Emp_Swing extends JFrame {
 				search();
 			}
 		});
+		bt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		            update();
+		            clearTextField();
+			}
+		});
 		bt5.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				delete();
-				clearTextField();
+				if (!tf2.getText().isEmpty()) { // 이름이 입력되었는지 확인
+		            delete();
+		            clearTextField();
+		        } else {
+		            ta.setText("사원 이름을 입력해 주세요.");
+		        }
 			}
 		});
 	}
@@ -164,38 +179,8 @@ public class Emp_Swing extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	public void delete() {
-		String sql = "delete from emp where empno = " + tf1.getText();
-		try {
-			int result = stmt.executeUpdate(sql);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-//	public void update() {
-//		String sql = String.format("UPDATE emp SET ename = '%s', job = '%s', mgr = %s, hiredate = '%s', sal = %s, comm = %s, deptno = %s WHERE empno = %s",
-//                name, newJob, newMgr, newHiredate, newSal, newComm, newDeptno, tf1.getText());
-//		try {
-//			ResultSet rs = stmt.executeQuery(sql);
-//			ta.setText("");
-//			if(rs.next()){
-//				int empno = rs.getInt("empno");
-//				String ename = rs.getString("ename");
-//				String job = rs.getString("job");
-//				int mgr = rs.getInt("mgr");
-//				String hiredate = rs.getString("hiredate");
-//				double sal = rs.getDouble("sal");
-//				double comm = rs.getDouble("comm");
-//				int deptno = rs.getInt("deptno");
-//			}
-//		} catch(SQLException e) {
-//				e.printStackTrace();
-//			}
-//	}
-	
 	public void search() {
-		String sql = String.format("select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp where empno = %s", tf1.getText());
+		String sql = String.format("select empno, ename, job, mgr, hiredate, sal, comm, deptno from emp where ename = '%s'", tf2.getText());
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			ta.setText("");
@@ -211,6 +196,7 @@ public class Emp_Swing extends JFrame {
 				String str = String.format("%d, %s, %s, %d, %s, %.2f, %.2f, %d\n", empno, ename, job, mgr, hiredate, sal,
 					                                                      comm, deptno);
 				ta.append(str);
+				tf1.setText(empno+"");
 				tf2.setText(ename);
 				tf3.setText(job);
 				tf4.setText(mgr+"");
@@ -220,15 +206,49 @@ public class Emp_Swing extends JFrame {
 				tf8.setText(deptno+"");
 
 			} else {
-				tf1.setText("");
-				tf2.setText("");
-				tf3.setText("");
-				ta.append("자료가 없습니다.");
+				ta.append("사원 이름을 검색해주세요.");
+				clearTextField();
 			}
 		} catch (SQLException e) {
 	
 			e.printStackTrace();
 		}
+	}
+	public void delete() {
+		String sql = String.format("delete from emp where ename = '%s'", tf2.getText());
+		try {
+			int result = stmt.executeUpdate(sql);
+			ta.setText("");
+			select();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update() {
+		if (isTextFieldEmpty()) { // 하나라도 비어있는지 확인
+	        ta.setText("모든 정보를 입력하세요.");
+	        return;
+	    }
+	    String sql =  String.format("update emp set empno=%s, job='%s', mgr=%s, hiredate='%s', sal=%s, comm=%s, deptno=%s where ename='%s'",
+	            tf1.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(), tf8.getText(), tf2.getText());
+	    try {
+			int result = stmt.executeUpdate(sql);
+			ta.setText("");
+			select();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private boolean isTextFieldEmpty() {
+		 List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
+	    for (JTextField Jt : list) {
+	        if (Jt.getText().isEmpty()) {
+	            return true; // 하나라도 비어있으면 true 반환
+	        }
+	    }
+
+	    return false; // 모두 비어있지 않으면 false 반환
 	}
 	public static void main(String[] args) {
 		new Emp_Swing();
