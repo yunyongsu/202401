@@ -38,7 +38,7 @@ public class MyFrame extends JFrame implements ActionListener {
 	JTextField jt5 = new JTextField();
 	JTextField jt6 = new JTextField();
 	
-	JLabel lb7 = new JLabel("메시지: 나오나요? 상태 메시지!");
+	JLabel lb7 = new JLabel("메시지: ");
 
 	JTextArea ta = new JTextArea();
 	
@@ -205,7 +205,6 @@ public class MyFrame extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		System.out.println(e.getActionCommand());
 		
 		switch (e.getActionCommand()) {
 		case "전체내용":
