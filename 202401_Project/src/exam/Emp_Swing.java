@@ -274,8 +274,12 @@ public class Emp_Swing extends JFrame {
 	}
 
 	private boolean TextFieldEmpty() {
-		List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
-		for (JTextField Jt : list) {
+			//List.of = 불변 리스트 생성, 추가/제거 불가, final 같은 느낌?
+//		List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
+//		list.add(tf1); list.add(tf2); list.add(tf3); list.add(tf4);
+//		list.add(tf5); list.add(tf6); list.add(tf7); list.add(tf8);
+		JTextField[] textFields = {tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8};
+		for (JTextField Jt : textFields) {
 			if (Jt.getText().isEmpty()) {
 				return true; // 하나라도 비어있으면 true 반환
 			}
