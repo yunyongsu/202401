@@ -26,13 +26,13 @@ public class Project_Bank {
 
 			switch (menuNum) { // 입력값(menuNum)에 따른 상태 변화
 			case 1: // 입력값이 1번일 때
-				if (membershipStatus) { // 만약 (case 1)문 = true 일 때 경고문 표시(45번 라인 true)
+				if (membershipStatus) { // 만약 (case 1) = true 일때(회원가입 상태일때) print문 출력 (57번라인 true)
 					System.out.println("이미 회원가입 상태입니다.");
 				
 				do {
 					System.out.println("가입절차를  계속 진행 하시겠습니까?(y/n)");
 					String answer = scanner.nextLine();
-					if (answer.equals("n") || answer.equals("N")) {
+					if (answer.equals("n") || answer.equals("N")) {	//만약 n/N 입력 시 AAA(while) 실행
 						continue AAA;
 					} else if (answer.equals("y") || answer.equals("Y")) {
 						break;
