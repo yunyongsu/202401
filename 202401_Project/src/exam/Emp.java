@@ -23,9 +23,9 @@ public class Emp {
 			boolean exit = false;
 			// exit가 true일 때, 사용자의 선택에 따라 반복 실행
 			while (!exit) {
-				System.out.println("-----------------------------------------------------");
+				System.out.println("--------------------------------------------------------");
 				System.out.println("1.데이터 보기 | 2.데이터 삽입 | 3.데이터 수정 | 4.데이터 삭제 | 5.종료");
-				System.out.println("-----------------------------------------------------");
+				System.out.println("--------------------------------------------------------");
 				System.out.print("선택> ");
 				String choice = scan.nextLine();
 
@@ -65,14 +65,14 @@ public class Emp {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				System.out.print(rs.getInt("empno") + "\t");
-				System.out.print(rs.getString("ename") + "\t");
-				System.out.print(rs.getString("job") + "\t");
-				System.out.print(rs.getInt("mgr") + "\t");
-				System.out.print(rs.getString("hiredate") + "\t");
-				System.out.print(rs.getString("sal") + "\t");
-				System.out.print(rs.getInt("comm") + "\t");
-				System.out.println(rs.getString("deptno"));
+				System.out.printf("%-5s", rs.getInt("empno"));
+				System.out.printf("%-10s", rs.getString("ename"));
+				System.out.printf("%-10s", rs.getString("job"));
+				System.out.printf("%-5s", rs.getInt("mgr"));
+				System.out.printf("%-15s", rs.getString("hiredate"));
+				System.out.printf("%-10s", rs.getString("sal"));
+				System.out.printf("%-5s", rs.getInt("comm"));
+				System.out.printf("%-5s%n", rs.getString("deptno"));
 
 			}
 		} catch (SQLException e) {
@@ -153,11 +153,11 @@ public class Emp {
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				System.out.println("데이터가 성공적으로 수정되었습니다.");
-			}else {
+			} else {
 				System.out.println("수정에 실패했습니다.");
 				System.out.println("해당하는 사원 번호가 존재하지 않거나 입력 형식에 맞춰주세요.");
 			}
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
