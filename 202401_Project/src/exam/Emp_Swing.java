@@ -264,7 +264,6 @@ public class Emp_Swing extends JFrame {
 			int result = stmt.executeUpdate(sql);
 			if (result >= 1) {
 				ta.setText("수정이 완료되었습니다.");
-				System.out.println("오류4");
 				}else {
 				ta.setText("이름은 변경할 수 없습니다.");
 			}
