@@ -184,6 +184,12 @@ public class Emp_Swing extends JFrame {
 			ta.setText("모든 정보를 입력하세요.");
 			return;
 		}
+		  String empno = tf1.getText();
+		 //이미 존재하는 사원번호인지 확인
+		if (EmpnoExist(empno)) {
+	        ta.setText("이미 존재하는 사원번호입니다. 다른 번호를 입력하세요.");
+	        return;
+	    }
 		try {
 			String sql = String.format("insert into emp values(%s, '%s', '%s', %s, '%s', %s, %s, %s)", tf1.getText(),
 					tf2.getText(), tf3.getText(), tf4.getText(), tf5.getText(), tf6.getText(), tf7.getText(),
@@ -274,14 +280,31 @@ public class Emp_Swing extends JFrame {
 	}
 
 	private boolean TextFieldEmpty() {
-		List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
-		for (JTextField Jt : list) {
+		//List.of = 불변 리스트 생성, 추가/제거 불가, final 같은 느낌?
+//		List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
+//		list.add(tf1); list.add(tf2); list.add(tf3); list.add(tf4);
+//		list.add(tf5); list.add(tf6); list.add(tf7); list.add(tf8);
+		JTextField[] textFields = {tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8};
+		for (JTextField Jt : textFields) {
 			if (Jt.getText().isEmpty()) {
 				return true; // 하나라도 비어있으면 true 반환
 			}
 		}
 
 		return false; // 모두 비어있지 않으면 false 반환
+	}
+	
+	private boolean EmpnoExist(String empno) {
+	    String sql = String.format("select count(*) as count from emp where empno = %s", empno);
+	    try {
+	        ResultSet rs = stmt.executeQuery(sql);
+	        rs.next();
+	        int count = rs.getInt("count");
+	        return count > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return true; // 에러 발생 시 중복으로 처리
+	    }
 	}
 
 	public static void main(String[] args) {
