@@ -88,6 +88,7 @@ public class Emp {
 		try {
 			System.out.print("사원 번호: ");
 			int empno = Integer.parseInt(scan.nextLine());
+			
 			System.out.print("사원 이름: ");
 			String ename = scan.nextLine();
 			System.out.print("부서 직책: ");
@@ -183,4 +184,5 @@ public class Emp {
 			e.printStackTrace();
 		}
 	}
+	
 }

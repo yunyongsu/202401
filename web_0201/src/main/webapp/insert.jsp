@@ -27,5 +27,8 @@ if(result==1){
 }
 %>
 <a href="insertForm.jsp"> 초기화면 </a>
+<%
+response.sendRedirect("select.jsp");
+%>
 </body>
 </html>

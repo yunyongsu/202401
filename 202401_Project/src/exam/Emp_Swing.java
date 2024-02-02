@@ -295,11 +295,15 @@ public class Emp_Swing extends JFrame {
 	}
 	
 	private boolean EmpnoExist(String empno) {
+		//empno 행의 개수를 세고 count로 반환한다.
 	    String sql = String.format("select count(*) as count from emp where empno = %s", empno);
 	    try {
 	        ResultSet rs = stmt.executeQuery(sql);
+	        //이동할 행이 없을때까지 다음 행으로 이동
 	        rs.next();
+	        //현재 행에서 count 라는 이름의(empno의 행의 개수) 열의 값을 정수로 가져온다.
 	        int count = rs.getInt("count");
+	        //empno(입력값)에 해당하는 행이 존재하면 true를 반환
 	        return count > 0;
 	    } catch (SQLException e) {
 	        e.printStackTrace();
