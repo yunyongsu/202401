@@ -270,7 +270,6 @@ public class Emp_Swing extends JFrame {
 			int result = stmt.executeUpdate(sql);
 			if (result >= 1) {
 				ta.setText("수정이 완료되었습니다.");
-				System.out.println("오류4");
 				}else {
 				ta.setText("이름은 변경할 수 없습니다.");
 			}
@@ -280,7 +279,11 @@ public class Emp_Swing extends JFrame {
 	}
 
 	private boolean TextFieldEmpty() {
+<<<<<<< HEAD
 		//List.of = 불변 리스트 생성, 추가/제거 불가, final 같은 느낌?
+=======
+			//List.of = 불변 리스트 생성, 추가/제거 불가, final 같은 느낌?
+>>>>>>> a2568fa75a35e6b9e6459557d4bc10c11ae9c67e
 //		List<JTextField> list = new ArrayList<>(List.of(tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8));
 //		list.add(tf1); list.add(tf2); list.add(tf3); list.add(tf4);
 //		list.add(tf5); list.add(tf6); list.add(tf7); list.add(tf8);
@@ -293,6 +296,7 @@ public class Emp_Swing extends JFrame {
 
 		return false; // 모두 비어있지 않으면 false 반환
 	}
+<<<<<<< HEAD
 	
 	private boolean EmpnoExist(String empno) {
 		//empno 행의 개수를 세고 count로 반환한다.
@@ -304,6 +308,14 @@ public class Emp_Swing extends JFrame {
 	        //현재 행에서 count 라는 이름의(empno의 행의 개수) 열의 값을 정수로 가져온다.
 	        int count = rs.getInt("count");
 	        //empno(입력값)에 해당하는 행이 존재하면 true를 반환
+=======
+		private boolean EmpnoExist(String empno) {
+	    String sql = String.format("select count(*) as count from emp where empno = %s", empno);
+	    try {
+	        ResultSet rs = stmt.executeQuery(sql);
+	        rs.next();
+	        int count = rs.getInt("count");
+>>>>>>> a2568fa75a35e6b9e6459557d4bc10c11ae9c67e
 	        return count > 0;
 	    } catch (SQLException e) {
 	        e.printStackTrace();
