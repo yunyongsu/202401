@@ -1,0 +1,38 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+div{
+    width: 1200px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding-left: 20px;
+
+}
+h1{
+    font-weight: bold;
+    color:blueviolet;
+    font-size: 50px;
+    font-family: 'Protest Riot', sans-serif;
+    padding-top: 20px;
+}
+div p{
+    font-size: 20px;
+    color:aqua;
+    font-family: Arial;
+}
+div a{
+    text-decoration: none;
+    font-size: 30px;
+    font-family: serif;
+    color:rgb(21, 21, 235);
+}
+i.fa-dog{
+    font-size: 50px;
+}
+i.fa-cat{
+    font-size: 100px;
+}
+i.fa-dragon{
+    font-size: 100px;
+}
