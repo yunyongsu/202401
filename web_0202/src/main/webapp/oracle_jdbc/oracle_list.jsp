@@ -6,11 +6,74 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/style.css" />
+<style>
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	background-color: rgb(211, 199, 199);
+	margin-top:20px;
+}
+div {
+	margin: 0 auto;
+	
+}
+table {
+	text-align: center;
+	border-collapse: collapse;
+	width: 100%
+}
+
+th {
+	background-color: green;
+}
+
+td, th {
+	padding: 10px;
+}
+
+h1 {
+	display: inline-block;
+}
+
+form {
+	text-align: right;
+}
+
+.bt1 {
+	background-color: #fff;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.bt1:hover {
+	background-color: #756d6d;
+	border: 2px solid #756d6d;
+}
+
+.bt2 {
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	display: block;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.page{
+	width: 100px;
+	height: 50px;
+	margin: 0 auto;
+	margin-top : 20px;
+	border: none;
+	padding: 0;
+	}
+
+</style>
 </head>
 <body>
     <div class="center">
-        
+       
         <h1>
             <strong> 학생 성적 관리 프로그램 </strong>
         </h1>
