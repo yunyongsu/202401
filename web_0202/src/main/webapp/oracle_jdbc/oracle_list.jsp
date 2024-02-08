@@ -6,73 +6,88 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-body {
-	font-family: Arial, sans-serif;
-	text-align: center;
-	background-color: rgb(211, 199, 199);
-	margin-top:20px;
-}
-div {
-	margin: 0 auto;
-	
-}
-table {
-	text-align: center;
-	border-collapse: collapse;
-	width: 100%
-}
-
-th {
-	background-color: green;
-}
-
-td, th {
-	padding: 10px;
-}
-
-h1 {
-	display: inline-block;
-}
-
-form {
-	text-align: right;
-}
-
-.bt1 {
-	background-color: #fff;
-	margin: auto;
-	margin-bottom: 20px;
-}
-
-.bt1:hover {
-	background-color: #756d6d;
-	border: 2px solid #756d6d;
-}
-
-.bt2 {
-	padding: 10px;
-	background-color: #4caf50;
-	color: white;
-	border: none;
-	display: block;
-	margin: auto;
-	margin-bottom: 30px;
-}
-
-.page{
-	width: 100px;
-	height: 50px;
-	margin: 0 auto;
-	margin-top : 20px;
-	border: none;
-	padding: 0;
-	}
-
-</style>
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .container {
+            margin: 0 auto;
+            width: 80%;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        
+        th {
+            background-color: green;
+            color: #fff;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        form {
+            text-align: right;
+        }
+        
+        input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .btn {
+            padding: 5px 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pagination a {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #ddd;
+            border: 1px solid #888;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #000;
+        }
+        
+        .pagination a:hover {
+            background-color: #ccc;
+        }
+        
+        .add-btn {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <div class="center">
+    <div class="container">
        
         <h1>
             <strong> 학생 성적 관리 프로그램 </strong>
@@ -80,7 +95,7 @@ form {
         <form>
             <label for="searchName">이름 검색: </label> 
             <input type="text" id="searchName" name="searchName">
-            <button type="submit" class="bt1">검색</button>
+            <button type="submit" class="btn">검색</button>
         </form>
         <table border="1px">
             <tr>
@@ -151,14 +166,14 @@ form {
         // 다음 페이지
         int nextPage = currentPage + 1;
         %>
-        <div class = "page">
+        <div class="pagination">
             <a href="<%=request.getRequestURI()%>?page=<%=prevPage%>&searchName=<%=searchName%>">이전</a>
             <%-- 현재 페이지 번호 표시 --%>
             <%=currentPage%>
             <a href="<%=request.getRequestURI()%>?page=<%=nextPage%>&searchName=<%=searchName%>">다음</a>
         </div>
         
-        <button onclick="location.href='oracle_insertForm.jsp'" class="bt2">학생 등록</button>
+        <button onclick="location.href='oracle_insertForm.jsp'" class="btn add-btn">학생 등록</button>
         
     </div>
 </body>
