@@ -2,7 +2,7 @@ package TestEx;
 
 import java.util.Scanner;
 
-public class Project {
+public class Project_Bank {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean run = true;

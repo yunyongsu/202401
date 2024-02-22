@@ -136,7 +136,8 @@ a{
 			String sql;
 
 			int pageSize = 7; // 한 페이지에 표시할 행의 개수
-			int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+			int currentPage = (request.getParameter("page") != null) ? 
+								Integer.parseInt(request.getParameter("page")) : 1;
 			int startRow = (currentPage - 1) * pageSize + 1;
 			int endRow = currentPage * pageSize;
 

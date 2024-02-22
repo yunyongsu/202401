@@ -19,6 +19,6 @@ if (remember != null && remember.equals("on")) {
 <title>Insert title here</title>
 </head>
 <body>
-@@Start@@
+
 </body>
 </html>
