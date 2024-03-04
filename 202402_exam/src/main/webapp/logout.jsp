@@ -4,10 +4,8 @@
 <%
     session.removeAttribute("userId"  );
     session.removeAttribute("userName");
-    
-    Cookie cookie = new Cookie("id", "");
-    cookie.setMaxAge(0); // 쿠키의 유효 시간을 0으로 설정하여 삭제합니다.
-    response.addCookie(cookie);
-
-    response.sendRedirect("homePage.jsp"); // 로그인 메인 화면으로
 %> 
+<script>
+    alert('로그아웃 되었습니다.');
+    window.location.href = "homePage.jsp";
+</script>

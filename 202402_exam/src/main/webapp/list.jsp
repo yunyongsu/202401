@@ -14,32 +14,48 @@ if (userId == null) {
     response.sendRedirect("login_main.jsp");
 }
 
+String userName = (String)session.getAttribute("userName");
 BoardDao dao = BoardDao.getInstance();
-
 //이름 검색
 String searchName = request.getParameter("searchName"); // 검색어 가져오기
-List<Board> list;
-if (searchName != null && !searchName.isEmpty()) {
-    list = dao.searchName(searchName); // 검색 결과 가져오기
-} else {
-    list = dao.selectList(); // 검색어가 없으면 전체 목록 가져오기
-}
 
-//리스트 페이징
+int currentPage = 1; //현재페이지 1로 설정
 String pageNoVal = request.getParameter("pageNo");
-int pageNo = 1; // 기본 페이지 번호 설정
+
+//pageNo값이 존재할 때 현재페이지에 할당
 if (pageNoVal != null) {
-    pageNo = Integer.parseInt(pageNoVal);
+    currentPage = Integer.parseInt(pageNoVal);
 }
 
-int total = dao.selectCount(); // 전체 게시글 수 조회
-// 현재 페이지에 해당하는 게시글 목록 조회 (1페이지 당 5개)
-list = dao.select((pageNo - 1) * 5, 5);
-// ArticlePage 객체 생성
-ArticlePage articlePage = new ArticlePage(total, pageNo, 5, list);
 
+int pageSize = 5; //한 페이지에 표시 할 게시글 수 5개로 설정
+
+//현재 페이지에서 시작해야 하는 게시물의 인덱스를 계산(0부터 시작)
+//ex)만약 현재페이지가 4라면 4-1 * 5 = 15 즉 16번째 게시글부터 출력
+int startRow = (currentPage - 1) * pageSize;
+List<Board> list;
+int totalResults = 0; // 검색 결과의 총 개수
+
+//이름 검색 시
+if (searchName != null && !searchName.isEmpty()) {
+    // 이름 검색 결과 가져오기
+    list = dao.searchName(searchName, startRow, pageSize);
+    // 검색 결과의 총 개수 가져오기
+    totalResults = dao.searchCount(searchName);
+    
+//검색창이 비어있을 시
+} else {
+    // 전체 목록 가져오기
+    list = dao.select(startRow, pageSize);
+    // 전체 게시글 수 가져오기
+    totalResults = dao.selectCount();
+}
+
+// ArticlePage 객체 생성하여 페이지 정보를 저장
+ArticlePage articlePage = new ArticlePage(totalResults, currentPage, pageSize, list);
 // articlePage를 request 속성으로 설정
 request.setAttribute("articlePage", articlePage);
+request.setAttribute("searchName", searchName);
 %>
 <!doctype html>
 <html lang="en">
@@ -108,9 +124,9 @@ text-decoration: none;
                 <li><a href="#">COMMUNITY</a></li>
                 <li><a href="#">LOCATION</a></li>
             </ul>
-
             <ul class="util">
                 <% if (userId != null) { %>
+                <li><p><%=userName%>님</p></li>
                     <li><a href="logout.jsp">로그아웃</a></li>
                     <li><a href="member_update_form.jsp">회원정보수정</a></li>
                 <% } else { %>
@@ -129,6 +145,7 @@ text-decoration: none;
         </div>
       </div>
     </form>
+    
 <table class="table talbe-bordered table-hover">
     <tr>
         <th class="num"    >번호    </th>
@@ -156,22 +173,22 @@ text-decoration: none;
 %>
 </table>
 <br>
- <div class="pageNo">
+<div class="pageNo">
     <% if (articlePage.hasArticles()) { %>
-        <% if (articlePage.getStartPage() > 5) { %>
-            <a href="list.jsp?pageNo=<%= articlePage.getStartPage() - 5 %>">이전</a>
+        <% if (articlePage.getStartPage() > 1) { %>
+             <a href="list.jsp?pageNo=<%= currentPage - 1 %>&searchName=<%= (searchName != null) ? searchName : "" %>">이전</a>
         <% } %>
         
         <% for (int i = articlePage.getStartPage(); i <= articlePage.getEndPage(); i++) { %>
-            <% if (i == articlePage.getCurrentPage()) { %>
+            <% if (i == currentPage) { %>
                 <strong><%= i %></strong>
             <% } else { %>
-                <a href="list.jsp?pageNo=<%= i %>"><%= i %></a>
+                 <a href="list.jsp?pageNo=<%= i %>&searchName=<%= (searchName != null) ? searchName : "" %>"><%= i %></a>
             <% } %>
         <% } %>
         
         <% if (articlePage.getEndPage() < articlePage.getTotalPages()) { %>
-            <a href="list.jsp?pageNo=<%= articlePage.getEndPage() + 5 %>">다음</a>
+           <a href="list.jsp?pageNo=<%= currentPage + 1 %>&searchName=<%= (searchName != null) ? searchName : "" %>">다음</a>
         <% } %>
     <% } %>
 </div>

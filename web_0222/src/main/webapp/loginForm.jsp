@@ -5,11 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+input{
+	width:100%;
+}
+#divid{
+	color: red;
+}
+</style>
 </head>
 <body>
 <form action="login.do" method="post">
-아이디:<input type="text" name="id"><br>
-이메일:<input type="text" name="email"><br>
+<div id="divid">
+<lable>아이디</lable><input type="text" name="id">
+</div>
+<lable>이메일</lable><input type="text" name="email"><br>
 <input type="submit" value="로그인">
 </form>
 

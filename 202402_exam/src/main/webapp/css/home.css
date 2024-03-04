@@ -84,19 +84,17 @@ figure video {
 }
 figure .inner {
 	width: 1180px;
-	margin: 0px auto;
-	position: relative;
+	position: absolute;
+	top:50px;
+	left: 300px;
 }
 figure .inner h1 {
 	font: normal 120px/1 "arial";
 	color: #fff;
-	margin-bottom: 20px;
+
+	
 }
-figure .inner p {
-	font: 16px/1.4 "arial";
-	color: #888;
-	margin-bottom: 60px;
-}
+
 figure .inner a {
 	display: block;
 	width: 400px;
@@ -107,6 +105,7 @@ figure .inner a {
 	text-align: center;
 	letter-spacing: 1px;
 	transition: all 0.5s;
+	margin-top: 100px;
 }
 figure .inner a:hover {
 	background: #fff;
@@ -222,3 +221,4 @@ footer .inner .lower p {
 	font: 12px/1 "arial";
 	color: #777;
 }
+

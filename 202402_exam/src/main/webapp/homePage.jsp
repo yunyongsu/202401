@@ -10,18 +10,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기업형 웹 페이지</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>리그 오브 레전드</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
     <script src="js/ie.js"></script>
 </head>
 
 <body>
-
     <header>
         <div class="inner">
-            <h1><a href="homePage.jsp">중앙정보기술인재개발원</a></h1>
-
+            <a href="homePage.jsp">
+            <img src="img/mainlogo.png" style="width:200px">
+			</a>
             <ul id="gnb">
                 <li><a href="list.jsp">게시판</a></li>
                 <li><a href="#">GALLERY</a></li>
@@ -43,11 +43,9 @@
         </div>
     </header>
     <figure>
-        <video src="img/visual.mp4" autoplay muted loop></video>
+        <video src="img/figure_img.mp4" autoplay muted loop></video>
         <div class="inner">
-            <h1>INNOVATION</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
-                Id praesentium molestias similique quaerat magni facere in a? Adipisci, possimus reprehenderit!</p>
+            <h1>League Of Legends</h1>
             <a href="#">view detail</a>
         </div>
     </figure>
@@ -58,7 +56,7 @@
             <div class="wrap">
                 <article>
                     <div class="pic">
-                        <img src="img/news1.jpg" alt="1번째 콘텐츠 이미지">
+                        <img src="img/elis.jpg" alt="1번째 콘텐츠 이미지">
                     </div>
                     <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
@@ -67,7 +65,7 @@
 
                 <article>
                     <div class="pic">
-                        <img src="img/news2.jpg" alt="2번째 콘텐츠 이미지">
+                        <img src="img/ari.jpg" alt="2번째 콘텐츠 이미지">
                     </div>
                     <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
@@ -76,7 +74,7 @@
 
                 <article>
                     <div class="pic">
-                        <img src="img/news3.jpg" alt="3번째 콘텐츠 이미지">
+                        <img src="img/lullu.jpg" alt="3번째 콘텐츠 이미지">
                     </div>
                     <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
@@ -85,7 +83,7 @@
 
                 <article>
                     <div class="pic">
-                        <img src="img/news4.jpg" alt="4번째 콘텐츠 이미지">
+                        <img src="img/lol.jpg" alt="4번째 콘텐츠 이미지">
                     </div>
                     <h2><a href="#">Lorem ipsum dolor sit.</a></h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae minus, eaque corrupti vero ad
@@ -118,8 +116,6 @@
             </div>
         </div>
     </footer>
-
-
 
 
 </body>

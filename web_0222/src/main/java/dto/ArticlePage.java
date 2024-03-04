@@ -22,7 +22,7 @@ public class ArticlePage {
 		} else {
 			totalPages = total / size;
 			
-			//나머지가 있으면 페이지 수 ++
+			//나머지가 있으면 페이지 수 ++ 
 			if(total % size > 0) {
 				totalPages++;
 			}
