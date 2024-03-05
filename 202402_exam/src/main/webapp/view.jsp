@@ -13,11 +13,13 @@ int num = Integer.parseInt(request.getParameter("num"));
 
 String userId = (String) session.getAttribute("userId");
 String userName = (String) session.getAttribute("userName");
+
 String writer = "";
 String title = "";
 String content = "";
 String regtime = "";
 int hits = 0;
+
 
 
 
@@ -164,11 +166,6 @@ td {
 	color: #333;
 }
 
-#comment-form label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
 
 #comment-form textarea {
 	width: 100%;
@@ -201,8 +198,8 @@ td {
 	font-size: 17px;
 	margin-bottom: 30px;
 }
-#comment-section button{
-	padding: 10px 20px;
+#comment-section .delete_button{
+	padding: 5px 15px;
 	border: 1px solid black;
 	border-radius: 5px;
 	cursor: pointer;
@@ -214,10 +211,9 @@ td {
 <body>
 	<header>
 		<div class="inner">
-			<h1>
-				<a href="homePage.jsp">중앙정보기술인재개발원</a>
-			</h1>
-
+			 <a href="homePage.jsp">
+            <img src="img/mainlogo.png" style="width:200px">
+			</a>
 			<ul id="gnb">
 				<li><a href="list.jsp">게시판</a></li>
 				<li><a href="#">GALLERY</a></li>
@@ -253,7 +249,7 @@ td {
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><%=userName%></td>
+				<td><%=writer%></td>
 			</tr>
 			<tr>
 				<th>작성일시</th>
@@ -281,9 +277,10 @@ td {
 			<%
 			}
 			%>
-		</div>
+		</div>		
 	</div>
-<div id="comment-section">
+	
+	<div id="comment-section">
     <h3>댓글 목록</h3>
     <table>
         <tr>
@@ -292,14 +289,15 @@ td {
             <th class="regtime">작성일시</th>
             <th></th>
         </tr>
-        <% for (Comments comment : list) { 
-        System.out.println("리스트");%>
+        <% for (Comments comment : list) { %>
         <tr>
             <td><%=comment.getWriter()%></td>
             <td><%=comment.getContent()%></td>
             <td><%=comment.getRegtime()%></td>
-            <td><input type="button" value="삭제"
-				onclick="location.href='delete.jsp?num=<%=num%>'"></td>
+            <td>
+        		<input type="button" value="삭제" class="delete_button"
+        		onclick="location.href = 'comment_delete.jsp?commentNum=<%=comment.getCommentNum()%>&num=<%=num%>';">
+    		</td>
         </tr>
         <% } %>
     </table>

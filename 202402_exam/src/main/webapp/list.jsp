@@ -115,8 +115,9 @@ text-decoration: none;
   <body>
    <header>
         <div class="inner">
-            <h1><a href="homePage.jsp">중앙정보기술인재개발원</a></h1>
-
+             <a href="homePage.jsp">
+            <img src="img/mainlogo.png" style="width:200px">
+			</a>
             <ul id="gnb">
                 <li><a href="list.jsp">게시판</a></li>
                 <li><a href="#">GALLERY</a></li>

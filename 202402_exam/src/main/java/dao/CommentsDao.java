@@ -55,8 +55,9 @@ public class CommentsDao {
 	        String sql = "SELECT * FROM comments WHERE board_num = ?";
 	        try (
 	        	PreparedStatement pstmt = conn.prepareStatement(sql);
-	        	ResultSet rs = pstmt.executeQuery();) {
+	        	) {
 	            pstmt.setInt(1, boardNum);
+	            ResultSet rs = pstmt.executeQuery();
 	                while (rs.next()) {
 	                    Comments comment = new Comments(rs.getInt("comment_num"),rs.getInt("board_num"),rs.getString("writer"),
 	                    		rs.getString("content"),rs.getString("regtime"));
@@ -68,4 +69,14 @@ public class CommentsDao {
 				}
 	        return list;
 	    }
+	public int delete(int commentNum) {
+		String sql = "delete from comments where comment_Num= ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNum);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+		}
+		return 0;
+	}
 }

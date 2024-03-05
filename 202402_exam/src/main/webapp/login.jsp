@@ -26,17 +26,8 @@
         return;
     }
 %>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
 	
 <script>
     alert('아이디 또는 비밀번호가 틀립니다!');
-    history.back();
+    window.location.href = "login_main.jsp";
 </script>
-</body>
-</html>

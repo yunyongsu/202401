@@ -23,13 +23,11 @@ if (content  == null || content.length()  == 0){
 <%        
     return;
 }
-
-
 CommentsDao daoc = CommentsDao.getInstance();
 Comments comm = new Comments(boardNum, writer, content);
 int result = daoc.addComment(comm);
 if (result > 0) {
-	response.sendRedirect("list.jsp");
+	request.getRequestDispatcher("view.jsp").forward(request, response);
 } else {
     response.sendRedirect("error.jsp");
 }
