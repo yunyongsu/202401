@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.Board;
 import dto.Comments;
 
 public class CommentsDao {
@@ -79,4 +80,21 @@ public class CommentsDao {
 		}
 		return 0;
 	}
+    
+    
+	public int update(Comments comments) {
+		 String sql = "update comments set content=? where comment_Num=?";
+		    try ( 
+		        PreparedStatement pstmt = conn.prepareStatement(sql);            
+		    ) {	        
+		        // 쿼리 실행
+		    	pstmt.setString(1, comments.getContent());
+		    	pstmt.setInt(2, comments.getCommentNum());
+		        return pstmt.executeUpdate();
+		    
+		    } catch(Exception e) {
+		        e.printStackTrace();
+		    } 
+			return 0;
+		}
 }

@@ -114,7 +114,7 @@ figure .inner a:hover {
 /* news */
 section {
 	width: 100%;
-	padding: 200px 0px;
+	padding: 50px 0px;
 }
 section .inner {
 	width: 1180px;
@@ -139,6 +139,7 @@ section .inner .wrap article {
 	width: 280px;
 	float: left;
 	margin-right: 20px;
+	transform: skewX(10deg);
 }
 section .inner .wrap article:last-child {
 	/*제일 오른쪽 마지막 요소만 여백제거*/
@@ -172,7 +173,7 @@ section .inner .wrap article .pic img {
 footer {
 	width: 100%;
 	background: #333;
-	padding: 100px 0px;
+	padding: 30px 0px;
 	border-top: 1px solid #888;
 }
 footer .inner {

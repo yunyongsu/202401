@@ -20,10 +20,6 @@ String content = "";
 String regtime = "";
 int hits = 0;
 
-
-
-
-
 String memberId = (String) session.getAttribute("userId");
 if (memberId == null) {
 	response.sendRedirect("login_main.jsp");
@@ -45,10 +41,8 @@ content = content.replace(" ", "&nbsp;").replace("\n", "<br>");
 
 boolean isAdminOrAuthor = userName != null && (userName.equals("관리자") || userName.equals(writer));
 
-
 CommentsDao comm = CommentsDao.getInstance();
 List<Comments> list = comm.CommentsBoard(num);
-
 %>
 
 <!DOCTYPE html>
@@ -154,7 +148,8 @@ td {
 #comment-form {
 	width: 70%;
 	margin: 0 auto;
-	margin-top: 80px; padding : 20px;
+	margin-top: 80px;
+	padding: 20px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	padding: 20px;
@@ -165,7 +160,6 @@ td {
 	font-size: 24px;
 	color: #333;
 }
-
 
 #comment-form textarea {
 	width: 100%;
@@ -198,7 +192,8 @@ td {
 	font-size: 17px;
 	margin-bottom: 30px;
 }
-#comment-section .delete_button{
+
+#comment-section .delete_button {
 	padding: 5px 15px;
 	border: 1px solid black;
 	border-radius: 5px;
@@ -206,13 +201,52 @@ td {
 	transition: background-color 0.3s, box-shadow 0.3s;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+#comment-section .edit_button {
+	padding: 5px 15px;
+	border: 1px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, box-shadow 0.3s;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comment-edit-form {
+	margin-top: 20px; /* 댓글 수정 폼과 이전 댓글 사이의 간격 설정 */
+	text-align: center;
+}
+
+.comment-edit-form textarea {
+	width: 100%; /* textarea 너비 100% 설정 */
+	padding: 10px; /* 내부 여백 설정 */
+	margin-bottom: 10px; /* 아래 여백 설정 */
+	border: 1px solid #ccc; /* 테두리 설정 */
+	border-radius: 5px; /* 모서리 둥글게 설정 */
+	resize: vertical; /* 세로 리사이즈 허용 */
+}
+
+.comment-edit-form button[type="submit"] {
+	background-color: sandybrown; /* 수정 완료 버튼 배경색 */
+	color: #fff; /* 수정 완료 버튼 텍스트 색상 */
+	padding: 12px 20px; /* 내부 여백 설정 */
+	border: none; /* 테두리 없음 */
+	border-radius: 5px; /* 모서리 둥글게 설정 */
+	cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능하도록 설정 */
+	font-size: 16px; /* 폰트 크기 설정 */
+	transition: background-color 0.3s; /* 배경색 변경에 대한 부드러운 전환 효과 */
+}
+
+.comment-edit-form button[type="submit"]:hover {
+	background-color: #0056b3; /* 마우스 오버시 배경색 변경 */
+}
+
 </style>
 </head>
 <body>
 	<header>
 		<div class="inner">
-			 <a href="homePage.jsp">
-            <img src="img/mainlogo.png" style="width:200px">
+			<a href="homePage.jsp"> <img src="img/mainlogo.png"
+				style="width: 200px">
 			</a>
 			<ul id="gnb">
 				<li><a href="list.jsp">게시판</a></li>
@@ -226,7 +260,8 @@ td {
 				<%
 				if (userId != null) {
 				%>
-				<li><p><%=userName%>님</p></li>
+				<li><p><%=userName%>님
+					</p></li>
 				<li><a href="logout.jsp">로그아웃</a></li>
 				<li><a href="member_update_form.jsp">회원정보수정</a></li>
 				<%
@@ -241,7 +276,6 @@ td {
 		</div>
 	</header>
 	<div class="container">
-
 		<table>
 			<tr>
 				<th>제목</th>
@@ -270,46 +304,69 @@ td {
 			<%
 			if (isAdminOrAuthor) {
 			%>
-			<input type="button" value="수정"
-				onclick="location.href='write.jsp?num=<%=num%>'"> 
-				<input type="button" value="삭제"
+			<input type="button" value="삭제"
 				onclick="location.href='delete.jsp?num=<%=num%>'">
 			<%
 			}
 			%>
-		</div>		
+		</div>
 	</div>
-	
-	<div id="comment-section">
-    <h3>댓글 목록</h3>
+
+<div id="comment-section">
     <table>
-        <tr>
-            <th class="writer">작성자</th>
-            <th class="content">내용</th>
-            <th class="regtime">작성일시</th>
-            <th></th>
-        </tr>
-        <% for (Comments comment : list) { %>
+        <% for (Comments comment : list) {
+            boolean isAuthorOrAdmin = userName != null && (userId.equals(comment.getWriter()) || userName.equals("관리자"));
+        %>
+        
         <tr>
             <td><%=comment.getWriter()%></td>
-            <td><%=comment.getContent()%></td>
+            <td id="content_<%=comment.getCommentNum()%>"><%=comment.getContent()%></td>
             <td><%=comment.getRegtime()%></td>
             <td>
-        		<input type="button" value="삭제" class="delete_button"
-        		onclick="location.href = 'comment_delete.jsp?commentNum=<%=comment.getCommentNum()%>&num=<%=num%>';">
-    		</td>
+                <% if (isAuthorOrAdmin) { %>
+                <!-- 수정 버튼 시작 -->
+                <input type="button" value="삭제" class="delete_button" onclick="location.href = 'comment_delete.jsp?commentNum=<%=comment.getCommentNum()%>&num=<%=num%>';">
+                <input type="button" value="수정" class="edit_button" onclick="showEditForm('<%=comment.getCommentNum()%>');">
+                <!-- 수정 버튼 끝 -->
+                <% } %>
+            </td>
         </tr>
+        <!-- 수정 폼 시작 -->
+        <tr class="comment-edit-form" data-comment-num="<%=comment.getCommentNum()%>" style="display: none;">
+             <td colspan="4">
+                <form action="comment_update.jsp" method="post">
+                    <textarea name="content" required></textarea>
+                    <input type="hidden" name="commentNum" value="<%=comment.getCommentNum()%>">
+                    <input type="hidden" name="boardNum" value="<%=num%>">
+                    <button type="submit">수정 완료</button>
+                </form>
+            </td>
+        </tr>
+        <!-- 수정 폼 끝 -->
         <% } %>
     </table>
 </div>
+	<script>
+	function showEditForm(commentNum) {
+	    var editForm = document.querySelector('.comment-edit-form[data-comment-num="' + commentNum + '"]');
+	    var contentTd = document.getElementById('content_' + commentNum);
+	    var content = contentTd.textContent.trim();
+
+	    // 수정 폼 안의 textarea에 댓글 내용 채우기
+	    editForm.querySelector('textarea').value = content;
+
+	    // 수정 폼 보이기
+	    editForm.style.display = 'block';
+	}
+	</script>
 	<!-- 댓글 작성 폼 -->
 	<div id="comment-form">
 		<form action="add_comment.jsp" method="post">
-			<input type="hidden" name="num" value="<%=num%>">
-			<input type="hidden" name="writer" value="<%=userId%>">
+			<input type="hidden" name="num" value="<%=num%>"> <input
+				type="hidden" name="writer" value="<%=userId%>">
 			<div>
 				<p>
-					<strong><%=writer%></strong>
+					<strong><%=userName%></strong>
 				</p>
 			</div>
 			<div>

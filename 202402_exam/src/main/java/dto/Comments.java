@@ -24,6 +24,13 @@ public Comments(int boardNum, String writer, String content) {
 	this.content = content;
 }
 
+
+public Comments(int commentNum, String content) {
+	super();
+	this.commentNum = commentNum;
+	this.content = content;
+}
+
 public int getCommentNum() {
 	return commentNum;
 }

@@ -46,7 +46,6 @@
         <video src="img/figure_img.mp4" autoplay muted loop></video>
         <div class="inner">
             <h1>League Of Legends</h1>
-            <a href="#">view detail</a>
         </div>
     </figure>
 

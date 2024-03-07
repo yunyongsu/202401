@@ -1,7 +1,6 @@
 package com.board;
 
-import java.util.ArrayList; 
-
+import java.util.ArrayList;
 
 public class BoardService {
 
@@ -61,7 +60,7 @@ public class BoardService {
         return new BoardDao().selectOne(num, false);
     }
 
-    public void writeMsg(String writer, String title, String content)
+    public void writeMsg(String writer, String title, String content, int memberno)
             throws Exception {
 
         if (writer  == null || writer.length()  == 0 ||
@@ -75,6 +74,7 @@ public class BoardService {
         dto.setWriter (writer );
         dto.setTitle  (title  );
         dto.setContent(content);
+        dto.setMemberno(memberno);
 
         new BoardDao().insertOne(dto);
     }
