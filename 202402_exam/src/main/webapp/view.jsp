@@ -306,6 +306,8 @@ td {
 			%>
 			<input type="button" value="삭제"
 				onclick="location.href='delete.jsp?num=<%=num%>'">
+			<input type="button" value="수정"
+				onclick="location.href='write.jsp?num=<%=num%>'">
 			<%
 			}
 			%>

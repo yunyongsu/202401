@@ -11,9 +11,11 @@ import spring.MemberPrinter;
 import spring.MemberRegisterService;
 import spring.VersionPrinter;
 
+//스프링의 설정 클래스, 이게 있어야 스프링으로 사용 가능
 @Configuration
 public class AppCtx {
 
+	
 	@Bean
 	public MemberDao memberDao() {
 		return new MemberDao();

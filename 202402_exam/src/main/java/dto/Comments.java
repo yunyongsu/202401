@@ -10,12 +10,14 @@ private String writer;
 private String content;
 private String regtime;
 
+
 public Comments(int commentNum, int boardNum, String writer, String content, String regtime) {
 	this.commentNum = commentNum;
 	this.boardNum = boardNum;
 	this.writer = writer;
 	this.content = content;
 	this.regtime = regtime;
+
 }
 
 public Comments(int boardNum, String writer, String content) {
